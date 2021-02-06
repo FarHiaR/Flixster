@@ -21,7 +21,7 @@ Flixter is an app that allows users to browse movies from the [The Movie Databas
 
 ### App Walkthough GIF
 
-<img src="https://imgur.com/MUVdBzl.gif" width=350><br>
+<img src="https://i.imgur.com/7couSda.gif" width=250><br>
 
 ### Notes
 Was struggling with the emulator, it needed 7GB storage.
