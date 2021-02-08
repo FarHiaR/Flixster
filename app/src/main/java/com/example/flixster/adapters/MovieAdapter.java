@@ -1,6 +1,8 @@
 package com.example.flixster.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
 
@@ -21,6 +27,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     Context context;
     List<Movie> movies;
 
+
+
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
         this.movies = movies;
@@ -30,6 +38,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("MovieAdapter", "onCreateViewHolder");
         View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
         return new ViewHolder(movieView);
     }
@@ -37,6 +46,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     //involves populating data into item through holder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d("MovieAdapter", "onBindViewHolder " + position);
         //Get the movie at the passed in position
         Movie movie = movies.get(position);
         //bind the movie data into the VH
@@ -54,18 +64,43 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView tvOverview;
         ImageView ivPoster;
 
+        ImageView imageView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
-
         }
 
         public void bind(Movie movie) {
+
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
-            Glide.with(context).load(movie.getPosterPath()).into(ivPoster);
+            String imageURL;
+
+
+
+            //If phone is in landscape
+            if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                //then imageURL = backdrop image
+                imageURL = movie.getBackdropPath();
+            } else {
+                //else imageURL = poster image
+                imageURL = movie.getPosterPath();
+            }
+           RequestOptions requestOptions = new RequestOptions();
+            requestOptions = requestOptions
+                  //  .transforms(new CenterCrop(), new RoundedCorners(20))
+                    .placeholder(R.drawable.loader);
+
+
+            Glide.with(context)
+                    .load(imageURL)
+                    .apply(requestOptions)
+                    .into(ivPoster);
+
+           // Glide.with(context).load(imageURL).into(ivPoster);
         }
     }
 }
