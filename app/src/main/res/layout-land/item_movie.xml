@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#F2D9F6">
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
+    android:background="#2C2B2C"
+    android:padding="2dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
 
 
     <ImageView
@@ -21,10 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:scaleType="centerCrop" />
-    <!--    android:layout_marginStart="0dp"
-      android:layout_marginTop="0dp"
-     android:layout_height="0dp"
-    android:layout_width="match_parent" -->
+
 
 
     <TextView
@@ -34,6 +38,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         tools:text="Fast and furious" />
 
@@ -45,5 +50,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="#FFFFFF"
         tools:text="A spinoff of the fate of something someting bla bla" />
 </RelativeLayout>
