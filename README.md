@@ -27,7 +27,7 @@ Flixter is an app that allows users to browse movies from the [The Movie Databas
 `TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
 
 <img src="Walkthrough2.gif" width=250><br>
-<img src="Walktrhrough2_land.gif" width=550><br>
+<img src="Walktrhrough2_land.gif" width=560><br>
 
 ### Notes
 
